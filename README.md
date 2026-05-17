@@ -32,6 +32,7 @@ This project is a **multi-user finance tracking system** where each user can:
 
 ## 📦 Folder Structure
 
+```text
 src/
 ├── auth/
 │   ├── auth.controller.ts
@@ -55,7 +56,7 @@ src/
 │
 ├── app.module.ts
 └── main.ts
-
+```
 ---
 
 # 🔗 Module Relationships
