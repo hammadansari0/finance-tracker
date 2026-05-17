@@ -151,6 +151,7 @@ model Income {
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
 }
+```
 
 # 📡 API ENDPOINTS
 
