@@ -593,6 +593,12 @@ req.user = {
 
 # 🧪 TESTING FLOW
 
+You can use this as Base URL to test Live instances.
+
+```url
+https://finance-tracker-backend-6s2l.onrender.com
+```
+
 1. Register user  
 2. Login → get token  
 3. Add income & expenses  
