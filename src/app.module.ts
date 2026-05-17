@@ -16,6 +16,7 @@ import { Module } from '@nestjs/common';
 import { PrismaModule } from './prisma/prisma.module';
 import { IncomeModule } from './income/income.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { ExportModule } from './export/export.module';
 
 import { ExpensesModule }
 from './expenses/expenses.module';
@@ -34,6 +35,7 @@ from './users/users.module';
     PrismaModule,
     IncomeModule,
     AnalyticsModule,
+    ExportModule,
   ],
 })
 export class AppModule {}

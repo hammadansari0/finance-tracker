@@ -340,6 +340,201 @@ Authorization: Bearer <token>
 
 ---
 
+# 📄 Export Module
+
+The Export Module allows users to download financial data in multiple formats including:
+
+- CSV Exports
+- PDF Financial Reports
+
+---
+
+# 📄 CSV EXPORT
+
+## Export Expenses CSV
+
+### Endpoint
+
+```http
+GET /export/expenses
+```
+
+### Description
+
+Exports all user expenses as a CSV file.
+
+### Response
+
+Downloads a `.csv` file containing:
+
+- Expense title
+- Amount
+- Category
+- Date
+- Notes (if available)
+
+---
+
+## Export Income CSV
+
+### Endpoint
+
+```http
+GET /export/income
+```
+
+### Description
+
+Exports all user income records as a CSV file.
+
+### Response
+
+Downloads a `.csv` file containing:
+
+- Income source
+- Amount
+- Category
+- Date
+- Notes (if available)
+
+---
+
+# 📊 PDF FINANCIAL REPORT
+
+Generate a complete financial report in PDF format.
+
+---
+
+## Endpoint
+
+```http
+GET /export/report
+```
+
+---
+
+## Optional Query Parameters
+
+| Parameter | Required | Description |
+|----------|----------|-------------|
+| from | ❌ Optional | Start date filter |
+| to | ❌ Optional | End date filter |
+
+---
+
+## Example Requests
+
+### Get Full Report
+
+```http
+GET /export/report
+```
+
+### Get Report Between Dates
+
+```http
+GET /export/report?from=2026-01-01&to=2026-12-31
+```
+
+### Get Report From Specific Date
+
+```http
+GET /export/report?from=2026-01-01
+```
+
+### Get Report Until Specific Date
+
+```http
+GET /export/report?to=2026-12-31
+```
+
+---
+
+# ✅ Response
+
+Downloads a PDF file containing:
+
+- Income list (sorted by date ascending)
+- Expense list (sorted by date ascending)
+- Total income
+- Total expenses
+- Final balance summary
+
+---
+
+# ⚠️ Important Behavior
+
+## What happens if date range is NOT provided?
+
+If the endpoint is called without `from` and `to`:
+
+```http
+GET /export/report
+```
+
+### System Behavior
+
+- ✅ No error will be thrown
+- ✅ All income records are included
+- ✅ All expense records are included
+- ✅ Data is sorted by date ascending
+
+---
+
+# 🧠 Filtering Logic
+
+| Case | Result |
+|------|--------|
+| No `from`, no `to` | Returns all data |
+| Only `from` provided | Returns data from date → present |
+| Only `to` provided | Returns data from start → specified date |
+| Both provided | Returns filtered range |
+| Invalid dates | Ignored or returns empty result |
+
+---
+
+# 📌 Notes
+
+- Date format must be:
+
+```txt
+YYYY-MM-DD
+```
+
+Example:
+
+```txt
+2026-01-01
+```
+
+- PDF generation is optimized for large datasets.
+- CSV exports use UTF-8 encoding.
+- All exported data belongs only to the authenticated user.
+
+---
+
+# 🔐 Authentication
+
+All export endpoints require authentication.
+
+Example:
+
+```http
+Authorization: Bearer <token>
+```
+
+---
+
+# 🚀 Export Endpoints Summary
+
+| Feature | Method | Endpoint |
+|---------|--------|----------|
+| Export Expenses CSV | GET | `/export/expenses` |
+| Export Income CSV | GET | `/export/income` |
+| Export PDF Report | GET | `/export/report` |
+
+---
+
 # 🔐 SECURITY MODEL
 
 ## Data Isolation Rule
